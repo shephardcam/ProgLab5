@@ -16,14 +16,15 @@ namespace Lab5
         {
             InitializeComponent();
         }
-        /* Name:
+        /* Name: Cameron Shephard
          * Date: November 2024
          * This program rolls one dice or calculates mark stats.
-         * Link to your repo in GitHub: 
+         * Link to your repo in GitHub: https://github.com/shephardcam/ProgLab5
          * */
 
         //class-level random object
         Random rand = new Random();
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -46,15 +47,24 @@ namespace Lab5
 
         private void btnRollDice_Click(object sender, EventArgs e)
         {
-            int dice1, dice2;
+            int dice1, dice2, total;
             //call ftn RollDice, placing returned number into integers
-            
+
             //place integers into labels
-            
+
             // call ftn GetName sending total and returning name
 
             //display name in label
+            dice1 = RollDice();
+            dice2 = RollDice();
+            total = dice1 + dice2;
+
+            lblDice1.Text = dice1.ToString();
+            lblDice2.Text = dice2.ToString();
             
+            string name = GetName(total);
+
+            lblRollName.Text = name;
         }
 
         /* Name: ClearOneRoll
@@ -74,7 +84,10 @@ namespace Lab5
         * Sent: nothing
         * Return: integer (1-6)
         * Simulates rolling one dice */
-
+        private int RollDice()
+        {
+            return rand.Next(1, 7);
+        }
 
         /* Name: GetName
         * Sent: 1 integer (total of dice1 and dice2) 
@@ -89,6 +102,33 @@ namespace Lab5
         *        11 = Yo-leven
         *        12 = Boxcars
         * Anything else = No special name*/
+        private string GetName(int total) {
+            switch (total) { 
+            case 2: 
+                return "Snake eyes";
+
+            case 3:
+                return "Litle Joe";
+
+            case 5:
+                return "Fever";
+
+            case 7:
+                return "Most Common";
+
+            case 9:
+                return "Center Feild";
+
+            case 11:
+                return "Yo-leven";
+
+            case 12:
+                return "Boxcars";
+
+            default:
+                return "No special name";
+            }
+        }
 
         private void btnSwapNumbers_Click(object sender, EventArgs e)
         {
